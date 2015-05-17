@@ -1,4 +1,7 @@
+import model.analyze.StandardAnalyzer
+import model.data.Paragraph
 import model.tokenizer.{BiGramTokenizer, WhitespaceTokenizer}
+import model.tools.{IndexDataSeeder, ParagraphCollection}
 import org.specs2.mutable._
 import org.specs2.runner._
 import org.junit.runner._
@@ -14,14 +17,21 @@ import play.api.test.Helpers._
 @RunWith(classOf[JUnitRunner])
 class ApplicationSpec extends Specification {
 
-  val wTokenizer = WhitespaceTokenizer
-  val bTokenizer = BiGramTokenizer()
 
   "Application" should {
     "send 404 on a bad request" in new WithApplication {
-      println(wTokenizer.tokenize("mehmem cem gunturkun"))
-      println(bTokenizer.tokenize("mehmem cem gunturkun"))
-      println(bTokenizer.termDictionary)
+
+      val collection = ParagraphCollection("resources/")
+      val start = System.currentTimeMillis()
+      val source = collection.getCollectionSource()
+
+      val index = model.data.Index[Paragraph](StandardAnalyzer)
+      println(index.dictionary.get("will"))
+      IndexDataSeeder.seedParagraphs(index, collection)
+
+      val stop = System.currentTimeMillis()
+      println(stop - start)
+      println(index.dictionary.get("will"))
       route(FakeRequest(GET, "/boum")) must beNone
     }
 

@@ -1,5 +1,7 @@
 package model.analyze
 
+import model.tokenizer.{BiGramTokenizer, WhitespaceTokenizer}
+
 /**
  * Created by mehmetgunturkun on 16/05/15.
  */
@@ -14,3 +16,5 @@ case class Analyzer(name: String,
     filteredTokenSet
   }
 }
+
+object StandardAnalyzer extends Analyzer("Standard", List.empty[Filter], WhitespaceTokenizer)

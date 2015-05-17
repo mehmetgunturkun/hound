@@ -1,7 +1,7 @@
 package model.tokenizer
 
 import model.analyze.Tokenizer
-import model.common.{PostingList, Dictionary}
+import model.data.Dictionary
 
 import scala.collection._
 /**

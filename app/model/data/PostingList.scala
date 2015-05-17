@@ -1,4 +1,4 @@
-package model.common
+package model.data
 
 import scala.collection.mutable.ArrayBuffer
 

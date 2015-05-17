@@ -1,9 +1,12 @@
-package model.common
+package model.data
+
 import scala.collection._
 /**
  * Created by mehmetgunturkun on 16/05/15.
  */
 case class Dictionary[R](source: mutable.Map[String, PostingList[R]] = mutable.Map.empty[String, PostingList[R]]) {
+
+  def get(term: String): Option[PostingList[R]] = source.get(term)
 
   def update(tokenSet: Set[String], item: R) = {
     tokenSet.foreach(token => {
