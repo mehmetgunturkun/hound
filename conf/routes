@@ -3,7 +3,18 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+
+GET        /index/and            controllers.Application.pageAnd
+GET        /index/or             controllers.Application.pageOr
+GET        /index/phrase         controllers.Application.pagePhrase
+GET        /index/score          controllers.Application.pageScore
+
+POST       /search/and           controllers.Application.searchWithAnd
+POST       /search/or            controllers.Application.searchWithOr
+POST       /search/phrase        controllers.Application.searchWithPhrase
+POST       /search/score         controllers.Application.searchWithScore
+POST       /delete               controllers.Application.delete
+POST       /spell                controllers.Application.spellCorrection
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET        /assets/*file         controllers.Assets.at(path="/public", file)
